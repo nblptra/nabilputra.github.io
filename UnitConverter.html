@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <style>
+    body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('space.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input, select {
+            margin: 5px;
+            padding: 8px;
+            width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unit Converter</h1>
+        <form id="unitConverter">
+            <input type="number" id="inputValue" placeholder="Enter value to convert" required>
+            <select id="fromUnit">
+                <option value="cm">Centimeter (cm)</option>
+                <option value="meter">Meter (m)</option>
+                <option value="km">Kilometer (km)</option>
+                <option value="celsius">Celsius (°C)</option>
+            </select>
+            <select id="toUnit">
+                <option value="meter">Meter (m)</option>
+                <option value="cm">Centimeter (cm)</option>
+                <option value="km">Kilometer (km)</option>
+                <option value="fahrenheit">Fahrenheit (°F)</option>
+            </select>
+            <button type="button" onclick="convert()">Convert</button>
+			<button onclick="window.location.href='main.html'">Back to Main</button>
+        </form>
+    </div>
+
+    <script>
+        function convert() {
+            var inputValue = parseFloat(document.getElementById('inputValue').value);
+            var fromUnit = document.getElementById('fromUnit').value;
+            var toUnit = document.getElementById('toUnit').value;
+            var result;
+
+            if (fromUnit === "cm" && toUnit === "meter") {
+                result = inputValue / 100;
+            } else if (fromUnit === "meter" && toUnit === "cm") {
+                result = inputValue * 100;
+            } else if (fromUnit === "meter" && toUnit === "km") {
+                result = inputValue / 1000;
+            } else if (fromUnit === "km" && toUnit === "meter") {
+                result = inputValue * 1000;
+            } else if (fromUnit === "celsius" && toUnit === "fahrenheit") {
+                result = (inputValue * 9 / 5) + 32;
+            } else {
+                result = inputValue;
+            }
+
+            alert("Result: " + result.toFixed(2) + " " + toUnit);
+        }
+    </script>
+</body>
+</html>
